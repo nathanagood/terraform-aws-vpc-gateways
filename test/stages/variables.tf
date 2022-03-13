@@ -1,50 +1,54 @@
+variable "region"{
+  type = string
+  default ="ap-south-1" 
+  description = "Please set the region where the resouces to be created "
+}
 
-# Resource Group Variables
+variable "access_key"{
+  type = string
+}
+variable "secret_key"{
+  type = string
+}
+
+variable "cloud_provider" {
+  type = string
+  default = "aws"
+  
+}
+
 variable "resource_group_name" {
   type        = string
   description = "Existing resource group where the IKS cluster will be provisioned."
+  default     = "default"
 }
 
-variable "ibmcloud_api_key" {
-  type        = string
-  description = "The api key for IBM Cloud access"
-}
 
-variable "region" {
-  type        = string
-  description = "Region for VLANs defined in private_vlan_number and public_vlan_number."
-}
-
-variable "namespace" {
-  type        = string
-  description = "Namespace for tools"
-}
-
-variable "cluster_name" {
-  type        = string
-  description = "The name of the cluster"
-  default     = ""
-}
-
-variable "cluster_type" {
-  type        = string
-  description = "The type of cluster that should be created (openshift or kubernetes)"
-}
-
-variable "cluster_exists" {
-  type        = string
-  description = "Flag indicating if the cluster already exists (true or false)"
-  default     = "true"
+variable "provision" {
+  type        = bool
+  description = "Flag indicating that the instance should be provisioned. If false then an existing instance will be looked up"
+  default     = true
 }
 
 variable "name_prefix" {
   type        = string
-  description = "Prefix name that should be used for the cluster and services. If not provided then resource_group_name will be used"
-  default     = ""
+  description = "Prefix to be added to the names of resources which are being provisioned"
+  default     = "swe"
 }
 
-variable "vpc_cluster" {
-  type        = bool
-  description = "Flag indicating that this is a vpc cluster"
-  default     = false
+variable "instance_tenancy" {
+  type        = string
+  description = "Instance is shared / dedicated, etc. #[default, dedicated, host]"
+  default     = "default"
+}
+
+variable "internal_cidr" {  
+  type        = string
+  description = "The cidr range of the internal network.Either provide manually or chose from AWS IPAM poolsß"
+  default     = "10.0.0.0/16"
+}
+variable "igw_name" {
+  type        = string
+  description = "The name of the existing VPC instance"
+  default     = ""
 }
