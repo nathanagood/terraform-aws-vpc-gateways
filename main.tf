@@ -29,6 +29,7 @@ data "aws_vpc" "vpc" {
   }
 }
 
+#Create internet gateway
 resource "aws_internet_gateway" "internet_gw" {
   depends_on = [
     data.aws_vpc.vpc
