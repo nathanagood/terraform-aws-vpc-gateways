@@ -6,7 +6,7 @@ locals{
   igw_id = var.provision ? aws_internet_gateway.internet_gw[0].id : ""
   igw_arn = var.provision ? aws_internet_gateway.internet_gw[0].arn : ""
   vpc_id = var.provision ? data.aws_vpc.vpc[0].id : null
-  
+  ids = var.provision ? aws_internet_gateway.internet_gw.*.id : null
 }
 
 

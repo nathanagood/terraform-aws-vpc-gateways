@@ -11,6 +11,10 @@ output "igw_arn" {
     value  =  module.dev_igw.igw_arn  
 }
 
+output "ids" {  
+    value =  module.dev_igw.ids 
+}
+
 resource null_resource write_outputs {
   provisioner "local-exec" {
     command = "echo \"$${OUTPUT}\" > igw-output.json"
